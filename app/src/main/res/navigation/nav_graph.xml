@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.bdn.ozbe.HomeFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/UserFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_NewUserFragment"
+            app:destination="@id/NewUserFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_QRFragment"
+            app:destination="@id/QRFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/UserFragment"
+        android:name="com.bdn.ozbe.UserFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_user">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/NewUserFragment"
+        android:name="com.bdn.ozbe.NewUserFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_new_user">
+
+        <action
+            android:id="@+id/action_NewUserFragment_to_HomeFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/QRFragment"
+        android:name="com.bdn.ozbe.QRFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_q_r">
+
+        <action
+            android:id="@+id/action_QRFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+</navigation>

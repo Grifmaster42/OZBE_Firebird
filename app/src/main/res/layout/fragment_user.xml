@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserFragment">
+
+    <RelativeLayout
+        android:id="@+id/relative_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scode_profile"
+        android:layout_marginTop="-2dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:text="Raum:"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/name_profile"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:minHeight="48dp"
+                android:text="A1"
+                android:textSize="26sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tische"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/maengel"
+        android:layout_marginTop="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mängel:"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/textView4"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:minHeight="48dp"
+                android:text="Keine"
+                android:textSize="26sp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/austattung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative_phone"
+        android:layout_marginTop="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tische:"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/country_profile"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:minHeight="46dp"
+                android:text="15"
+                android:textSize="26sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="151dp"
+        android:layout_height="127dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/facebook_avatar" />
+
+    <TextView
+        android:id="@+id/scode_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/profile_image"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="" />
+
+
+    <RelativeLayout
+        android:id="@+id/relative_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative_name"
+        android:layout_marginTop="-1dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingVertical="10dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stühle:"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/phone_profile"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:minHeight="48dp"
+                android:text="30"
+                android:textSize="26sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/maengel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/austattung"
+        android:layout_marginTop="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Austattung:"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/textView3"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:minHeight="48dp"
+                android:text="Beamer"
+                android:textSize="26sp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonEdit"
+        android:layout_width="57dp"
+        android:layout_height="69dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="40dp"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        tools:ignore="SpeakableTextPresentCheck"/>
+
+
+</RelativeLayout>

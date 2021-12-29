@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewUserFragment">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/new_profile_image"
+        android:layout_width="151dp"
+        android:layout_height="127dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/facebook_avatar" />
+
+    <RelativeLayout
+        android:id="@+id/new_relative_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_profile_image"
+        android:layout_marginTop="50dp"
+        android:background="?attr/selectableItemBackground"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_raum_layout"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/new_raum"
+                    android:layout_width="278dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Raum"
+                    android:inputType="text"
+                    android:textSize="26sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/new_relative_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_relative_name"
+        android:layout_marginTop="1dp"
+        android:background="?attr/selectableItemBackground"
+        android:paddingVertical="10dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical"
+            tools:ignore="DuplicateClickableBoundsCheck">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_stuhle_layout"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/new_stuhle"
+                    android:layout_width="278dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Stühle"
+                    android:inputType="number"
+                    android:textSize="26sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/new_new_austattung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_relative_phone"
+        android:layout_marginTop="1dp"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical"
+            tools:ignore="DuplicateClickableBoundsCheck">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_tische_layout"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/new_tische"
+                    android:layout_width="278dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Tische"
+                    android:inputType="number"
+                    android:textSize="26sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/new_maengel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_new_austattung"
+        android:layout_marginTop="1dp"
+        android:background="?attr/selectableItemBackground"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_austattung_layout"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/new_austattung"
+                    android:layout_width="278dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Austattung"
+                    android:inputType="text"
+                    android:textSize="26sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/new_new_tische"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_maengel"
+        android:layout_marginTop="1dp"
+        android:background="?attr/selectableItemBackground"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/new_mangel_layout"
+                android:layout_width="278dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/new_mangel"
+                    android:layout_width="278dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="Mängel"
+                    android:inputType="text"
+                    android:textSize="26sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonSave"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="40dp"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+</RelativeLayout>
