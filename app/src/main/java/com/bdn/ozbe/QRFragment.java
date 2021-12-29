@@ -36,6 +36,7 @@ public class QRFragment extends Fragment {
         mCodeScanner.setDecodeCallback(result -> requireActivity().runOnUiThread(() -> {
             assert mainActivity != null;
             mainActivity.setResult(result.getText());
+            mainActivity.setStartup(true);
             NavHostFragment.findNavController(QRFragment.this)
                     .navigate(R.id.action_QRFragment_to_FirstFragment);
         }));

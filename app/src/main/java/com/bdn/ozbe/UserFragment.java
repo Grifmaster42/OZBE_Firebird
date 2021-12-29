@@ -60,6 +60,7 @@ public class UserFragment extends Fragment {
                                     String.valueOf(R.drawable.h));
                 mainActivity.editUser(cur);
                 mainActivity.writeDB();
+                mainActivity.setStartup(true);
                 NavHostFragment.findNavController(UserFragment.this)
                             .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }

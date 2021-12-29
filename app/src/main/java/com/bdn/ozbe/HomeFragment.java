@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
                 if (mainActivity.isStartup()) {
                     mainActivity.setStartup(false);
                 } else {
-                    Snackbar.make(mainActivity.binding.getRoot(), "Datenbank aktualisiert", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    //Snackbar.make(mainActivity.binding.getRoot(), "Datenbank aktualisiert", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
 
             }

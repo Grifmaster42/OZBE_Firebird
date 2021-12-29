@@ -82,18 +82,16 @@ public class NewUserFragment extends Fragment {
                 return;
             }
 
-            MainActivity mainActivity1 = (MainActivity) getActivity();
 
-            assert mainActivity1 != null;
-            mainActivity1.addUser(new User(rl.getEditText().getText().toString()
+            assert mainActivity != null;
+            mainActivity.addUser(new User(rl.getEditText().getText().toString()
                     ,sl.getEditText().getText().toString()
                     ,tl.getEditText().getText().toString()
                     ,Objects.requireNonNull(al.getEditText()).getText().toString()
                     ,Objects.requireNonNull(ml.getEditText()).getText().toString()
                     ,String.valueOf(R.drawable.h)));
-            mainActivity1.writeDB();
-
-
+            mainActivity.setStartup(true);
+            mainActivity.writeDB();
             NavHostFragment.findNavController(NewUserFragment.this)
                     .navigate(R.id.action_NewUserFragment_to_HomeFragment);
         });
