@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.bdn.ozbe.databinding.FragmentFirstBinding;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -70,9 +69,8 @@ public class HomeFragment extends Fragment {
                 binding.listview.setAdapter(listAdapter);
                 if (mainActivity.isStartup()) {
                     mainActivity.setStartup(false);
-                } else {
-                    //Snackbar.make(mainActivity.binding.getRoot(), "Datenbank aktualisiert", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                }
+                }  //Snackbar.make(mainActivity.binding.getRoot(), "Datenbank aktualisiert", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
 
             }
 
