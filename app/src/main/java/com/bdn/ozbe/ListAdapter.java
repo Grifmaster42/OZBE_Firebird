@@ -43,7 +43,7 @@ public class ListAdapter extends ArrayAdapter<User> {
         TextView mangel = convertView.findViewById(R.id.ListeMängel);
         //TextView time = convertView.findViewById(R.id.msgtime);
 
-        imageView.setImageResource(R.drawable.h);
+        imageView.setImageResource(user.getImageId());
         userName.setText(user.raumID);
         lastMsg.setText(user.stuhle);
         tische.setText(user.tische);

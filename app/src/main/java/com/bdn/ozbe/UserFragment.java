@@ -41,6 +41,7 @@ public class UserFragment extends Fragment {
         FloatingActionButton b_edit = binding.floatingActionButtonEdit;
         b_edit.setOnClickListener(view -> {
             if (!edit) {
+
                 binding.floatingActionButtonEdit.setImageResource(R.drawable.ic_baseline_save_24);
                 binding.phoneProfile.setFocusableInTouchMode(true);
                 binding.countryProfile.setFocusableInTouchMode(true);

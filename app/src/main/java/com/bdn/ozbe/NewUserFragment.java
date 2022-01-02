@@ -1,18 +1,19 @@
 package com.bdn.ozbe;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.bdn.ozbe.databinding.FragmentNewUserBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,10 +21,13 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
-public class NewUserFragment extends Fragment {
 
-    public NewUserFragment() {
-    }
+public class NewUserFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+
+    public int img;
+    public SpinnerAdapter spinnerAdapter;
+    int[] img_res = {R.drawable.h,R.drawable.s};
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,12 @@ public class NewUserFragment extends Fragment {
 
         FragmentNewUserBinding binding = FragmentNewUserBinding.inflate(inflater, container, false);
         MainActivity mainActivity = (MainActivity) getActivity();
+
+        Spinner spinner = binding.newProfileImage;
+        spinner.setOnItemSelectedListener(this);
+
+        spinnerAdapter = new SpinnerAdapter(getContext(), img_res);
+        spinner.setAdapter(spinnerAdapter);
 
         TextInputLayout rl = binding.newRaumLayout;
         TextInputLayout sl = binding.newStuhleLayout;
@@ -89,7 +99,7 @@ public class NewUserFragment extends Fragment {
                     ,tl.getEditText().getText().toString()
                     ,Objects.requireNonNull(al.getEditText()).getText().toString()
                     ,Objects.requireNonNull(ml.getEditText()).getText().toString()
-                    ,String.valueOf(R.drawable.h)));
+                    ,String.valueOf(img)));
             mainActivity.setStartup(true);
             mainActivity.writeDB();
             NavHostFragment.findNavController(NewUserFragment.this)
@@ -97,5 +107,15 @@ public class NewUserFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        img = img_res[i];
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

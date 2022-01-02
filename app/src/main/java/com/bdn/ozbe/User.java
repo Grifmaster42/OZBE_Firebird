@@ -13,10 +13,18 @@ package com.bdn.ozbe;
             this.imageId = imageId;
         }
 
+        public int getImageId() {
+            return Integer.parseInt(imageId);
+        }
+
+        public void setImageId(int imageId) {
+            this.imageId = Integer.toString(imageId);
+        }
+
         public User() {
             this.raumID = "AAAA";
-            this.stuhle = "stuhle";
-            this.tische = "tische";
+            this.stuhle = "200";
+            this.tische = "100";
             this.mangel = "mangel";
             this.austattung = "austattung";
             this.imageId = String.valueOf(R.drawable.h);
