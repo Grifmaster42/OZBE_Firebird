@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         getUser(position).setTische(newUser.getTische());
         getUser(position).setAustattung(newUser.getAustattung());
         getUser(position).setMangel(newUser.getMangel());
+        getUser(position).setImageId(newUser.getImageId());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

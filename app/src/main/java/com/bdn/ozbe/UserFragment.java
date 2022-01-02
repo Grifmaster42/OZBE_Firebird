@@ -5,17 +5,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
 import com.bdn.ozbe.databinding.FragmentUserBinding;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class UserFragment extends Fragment {
+public class UserFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private FragmentUserBinding binding;
+    public SpinnerAdapter spinnerAdapter;
+    int img;
+    int[] img_res = {R.drawable.h,R.drawable.s};
     boolean edit = false;
 
 
@@ -23,12 +28,20 @@ public class UserFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
         binding = FragmentUserBinding.inflate(inflater, container, false);
 
+        Spinner spin = binding.profileImage;
+        spinnerAdapter = new SpinnerAdapter(getContext(), img_res);
+        spin.setAdapter(spinnerAdapter);
+
         MainActivity mainActivity = (MainActivity) getActivity();
         binding.nameProfile.setFocusableInTouchMode(false);
         binding.phoneProfile.setFocusableInTouchMode(false);
         binding.countryProfile.setFocusableInTouchMode(false);
         binding.textView3.setFocusableInTouchMode(false);
         binding.textView4.setFocusableInTouchMode(false);
+        spin.getSelectedView();
+        spin.setEnabled(false);
+
+        spin.setOnItemSelectedListener(this);
 
         assert mainActivity != null;
         binding.nameProfile.setText(mainActivity.getCurrent().getRaumID());
@@ -36,7 +49,11 @@ public class UserFragment extends Fragment {
         binding.countryProfile.setText(mainActivity.getCurrent().getTische());
         binding.textView3.setText(mainActivity.getCurrent().getAustattung());
         binding.textView4.setText(mainActivity.getCurrent().getMangel());
-        binding.profileImage.setImageResource(R.drawable.h);
+        for (int i = 0; i < img_res.length; i++) {
+            if (mainActivity.getCurrent().getImageId() == img_res[i]) {
+                spin.setSelection(i);
+            }
+        }
 
         FloatingActionButton b_edit = binding.floatingActionButtonEdit;
         b_edit.setOnClickListener(view -> {
@@ -47,6 +64,8 @@ public class UserFragment extends Fragment {
                 binding.countryProfile.setFocusableInTouchMode(true);
                 binding.textView3.setFocusableInTouchMode(true);
                 binding.textView4.setFocusableInTouchMode(true);
+                spin.setEnabled(true);
+
                 binding.phoneProfile.setBackgroundColor(getResources().getColor(R.color.light_grey));
                 binding.countryProfile.setBackgroundColor(getResources().getColor(R.color.light_grey));
                 binding.textView3.setBackgroundColor(getResources().getColor(R.color.light_grey));
@@ -58,7 +77,7 @@ public class UserFragment extends Fragment {
                                     binding.countryProfile.getText().toString(),
                                     binding.textView3.getText().toString(),
                                     binding.textView4.getText().toString(),
-                                    String.valueOf(R.drawable.h));
+                                    Integer.toString(img));
                 mainActivity.editUser(cur);
                 mainActivity.writeDB();
                 mainActivity.setStartup(true);
@@ -67,6 +86,16 @@ public class UserFragment extends Fragment {
             }
         });
         return binding.getRoot();
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        img = img_res[i];
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
