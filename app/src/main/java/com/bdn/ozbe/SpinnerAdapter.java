@@ -11,12 +11,10 @@ import android.widget.BaseAdapter;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SpinnerAdapter extends BaseAdapter {
-    Context context;
-    int[] img_res;
-    LayoutInflater inflter;
+    private final int[] img_res;
+    private final LayoutInflater inflter;
 
     public SpinnerAdapter(Context applicationContext, int[] img_res) {
-        this.context = applicationContext;
         this.img_res = img_res;
         inflter = (LayoutInflater.from(applicationContext));
     }

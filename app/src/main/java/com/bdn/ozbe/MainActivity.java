@@ -26,10 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private String result="";
     private User current = new User();
-    public ArrayList<User> userArrayList = new ArrayList<>();
-    public DatabaseReference myRef;
-    public boolean startup = true;
-    public ActivityMainBinding binding;
+    private final ArrayList<User> userArrayList = new ArrayList<>();
+    private DatabaseReference myRef;
+    private boolean startup = true;
 
     public boolean isStartup() {
         return startup;
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     public void editUser(User newUser){
         int position = -1;
         for (int i = 0; i < userArrayList.size(); i++) {
-            if (getUser(i).raumID.equals(newUser.getRaumID())) {
+            if (getUser(i).getRaumID().equals(newUser.getRaumID())) {
                 position = i;
             }
         }
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void sort() {
-        Collections.sort(userArrayList,(Comparator.comparing(o -> o.raumID)));
+        Collections.sort(userArrayList,(Comparator.comparing(User::getRaumID)));
     }
 
     public void writeDB() {
@@ -106,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
     public void updateDB() {
         int size = userArrayList.size() + 1;
         myRef.child(""+size+"").removeValue();
+    }
+
+    public ArrayList<User> getUserArrayList() {
+        return userArrayList;
+    }
+
+    public DatabaseReference getMyRef() {
+        return myRef;
     }
 
     public String getResult() {
@@ -132,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         reqMulPerm();
         myRef = FirebaseDatabase.getInstance("https://ozbe-swe-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.bdn.ozbe.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

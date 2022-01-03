@@ -44,11 +44,11 @@ public class ListAdapter extends ArrayAdapter<User> {
         //TextView time = convertView.findViewById(R.id.msgtime);
 
         imageView.setImageResource(user.getImageId());
-        userName.setText(user.raumID);
-        lastMsg.setText(user.stuhle);
-        tische.setText(user.tische);
-        ausstattung.setText(user.austattung);
-        mangel.setText(user.mangel);
+        userName.setText(user.getRaumID());
+        lastMsg.setText(user.getStuhle());
+        tische.setText(user.getTische());
+        ausstattung.setText(user.getAustattung());
+        mangel.setText(user.getMangel());
         //time.setText(user.lastMsgTime);
 
 

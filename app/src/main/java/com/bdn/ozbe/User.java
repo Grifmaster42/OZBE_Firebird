@@ -2,7 +2,12 @@ package com.bdn.ozbe;
 
     public class User {
 
-        String raumID, stuhle, tische, austattung, mangel, imageId;
+        private final String raumID;
+        private String stuhle;
+        private String tische;
+        private String austattung;
+        private String mangel;
+        private String imageId;
 
         public User(String raumID,  String stuhle, String tische, String austattung, String mangel, String imageId) {
             this.raumID = raumID;

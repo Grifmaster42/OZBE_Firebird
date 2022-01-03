@@ -25,10 +25,10 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    public FragmentFirstBinding binding;
-    public ListAdapter tlistAdapter;
-    public ListAdapter listAdapter;
-    public ArrayList<User> tuserArrayList = new ArrayList<>();
+    private FragmentFirstBinding binding;
+    private ListAdapter tlistAdapter;
+    private ListAdapter listAdapter;
+    private final ArrayList<User> tuserArrayList = new ArrayList<>();
 
 
     @Override
@@ -40,15 +40,15 @@ public class HomeFragment extends Fragment {
         MainActivity mainActivity = (MainActivity) getActivity();
         assert mainActivity != null;
         tlistAdapter = new ListAdapter(getContext(), tuserArrayList);
-        listAdapter = new ListAdapter(getContext(), mainActivity.userArrayList);
+        listAdapter = new ListAdapter(getContext(), mainActivity.getUserArrayList());
 
 
-        mainActivity.myRef.addValueEventListener(new ValueEventListener() {
+        mainActivity.getMyRef().addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int elem = (int) dataSnapshot.getChildrenCount();
-                mainActivity.userArrayList.clear();
+                mainActivity.getUserArrayList().clear();
                 for (int i = 1; i <= elem; i++) {
                     DataSnapshot task = dataSnapshot.child("" + i + "");
                     if (!task.exists()) {
@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 tuserArrayList.clear();
-                for (int x=0;x < mainActivity.userArrayList.size();x++){
+                for (int x=0;x < mainActivity.getUserArrayList().size();x++){
                     String stext = search.getText().toString().toUpperCase();
                     if (mainActivity.getUser(x).getRaumID().contains(stext)) {
                         System.out.println(mainActivity.getUser(x).getRaumID());

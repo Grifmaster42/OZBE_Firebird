@@ -18,10 +18,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class UserFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private FragmentUserBinding binding;
-    public SpinnerAdapter spinnerAdapter;
-    int img;
-    int[] img_res = {R.drawable.h,R.drawable.s};
-    boolean edit = false;
+    private int img;
+    private final int[] img_res = {R.drawable.h,R.drawable.s};
+    private boolean edit = false;
 
 
     @Override
@@ -29,7 +28,7 @@ public class UserFragment extends Fragment implements AdapterView.OnItemSelected
         binding = FragmentUserBinding.inflate(inflater, container, false);
 
         Spinner spin = binding.profileImage;
-        spinnerAdapter = new SpinnerAdapter(getContext(), img_res);
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getContext(), img_res);
         spin.setAdapter(spinnerAdapter);
 
         MainActivity mainActivity = (MainActivity) getActivity();

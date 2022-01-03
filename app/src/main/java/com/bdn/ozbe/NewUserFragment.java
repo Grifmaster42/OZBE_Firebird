@@ -24,9 +24,8 @@ import java.util.Objects;
 
 public class NewUserFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    public int img;
-    public SpinnerAdapter spinnerAdapter;
-    int[] img_res = {R.drawable.h,R.drawable.s};
+    private int img;
+    private final int[] img_res = {R.drawable.h,R.drawable.s};
 
 
     @Override
@@ -43,7 +42,7 @@ public class NewUserFragment extends Fragment implements AdapterView.OnItemSelec
         Spinner spinner = binding.newProfileImage;
         spinner.setOnItemSelectedListener(this);
 
-        spinnerAdapter = new SpinnerAdapter(getContext(), img_res);
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getContext(), img_res);
         spinner.setAdapter(spinnerAdapter);
 
         TextInputLayout rl = binding.newRaumLayout;
