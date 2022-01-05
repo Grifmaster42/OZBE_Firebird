@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
                                 String.valueOf(task.child("tische").getValue()),
                                 String.valueOf(task.child("austattung").getValue()),
                                 String.valueOf(task.child("mangel").getValue()),
-                                String.valueOf(task.child("imageId").getValue()));
+                                Integer.parseInt(String.valueOf(task.child("imageId").getValue())));
                         mainActivity.addUser(tuser);
                     }
                 }

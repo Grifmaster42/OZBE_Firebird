@@ -7,9 +7,9 @@ package com.bdn.ozbe;
         private String tische;
         private String austattung;
         private String mangel;
-        private String imageId;
+        private int imageId;
 
-        public User(String raumID,  String stuhle, String tische, String austattung, String mangel, String imageId) {
+        public User(String raumID,  String stuhle, String tische, String austattung, String mangel, int imageId) {
             this.raumID = raumID;
             this.stuhle = stuhle;
             this.tische = tische;
@@ -19,11 +19,11 @@ package com.bdn.ozbe;
         }
 
         public int getImageId() {
-            return Integer.parseInt(imageId);
+            return imageId;
         }
 
         public void setImageId(int imageId) {
-            this.imageId = Integer.toString(imageId);
+            this.imageId = imageId;
         }
 
         public User() {
@@ -32,7 +32,7 @@ package com.bdn.ozbe;
             this.tische = "100";
             this.mangel = "mangel";
             this.austattung = "austattung";
-            this.imageId = String.valueOf(R.drawable.h);
+            this.imageId = R.drawable.h;
         }
 
         public String getRaumID() {

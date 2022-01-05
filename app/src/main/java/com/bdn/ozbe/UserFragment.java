@@ -76,7 +76,7 @@ public class UserFragment extends Fragment implements AdapterView.OnItemSelected
                                     binding.countryProfile.getText().toString(),
                                     binding.textView3.getText().toString(),
                                     binding.textView4.getText().toString(),
-                                    Integer.toString(img));
+                                    img);
                 mainActivity.editUser(cur);
                 mainActivity.writeDB();
                 mainActivity.setStartup(true);

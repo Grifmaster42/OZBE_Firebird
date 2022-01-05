@@ -98,7 +98,7 @@ public class NewUserFragment extends Fragment implements AdapterView.OnItemSelec
                     ,tl.getEditText().getText().toString()
                     ,Objects.requireNonNull(al.getEditText()).getText().toString()
                     ,Objects.requireNonNull(ml.getEditText()).getText().toString()
-                    ,String.valueOf(img)));
+                    ,img));
             mainActivity.setStartup(true);
             mainActivity.writeDB();
             NavHostFragment.findNavController(NewUserFragment.this)
