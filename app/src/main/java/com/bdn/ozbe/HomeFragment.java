@@ -71,7 +71,6 @@ public class HomeFragment extends Fragment {
                     mainActivity.setStartup(false);
                 }  //Snackbar.make(mainActivity.binding.getRoot(), "Datenbank aktualisiert", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
-
             }
 
             @Override
@@ -85,6 +84,24 @@ public class HomeFragment extends Fragment {
         binding.listview.setAdapter(listAdapter);
         binding.listview.setClickable(true);
         search.setText(mainActivity.getResult());
+        boolean found = false;
+        if (!mainActivity.getResult().equals("")){
+            for (int i = 0; i < mainActivity.getUserArrayList().size(); i++) {
+                if (mainActivity.getUser(i).getRaumID().equals(mainActivity.getResult()))
+                {
+                    mainActivity.setCurrent(mainActivity.getUser(i));
+                    mainActivity.setResult("");
+                    NavHostFragment.findNavController(HomeFragment.this)
+                            .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                    found = true;
+                }
+            }
+            if (!found){
+                NavHostFragment.findNavController(HomeFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_NewUserFragment);
+            }
+        }
+        search.setText("");
 
 
         search.addTextChangedListener(new TextWatcher() {

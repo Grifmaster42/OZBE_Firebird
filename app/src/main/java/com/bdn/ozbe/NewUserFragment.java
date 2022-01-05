@@ -39,6 +39,9 @@ public class NewUserFragment extends Fragment implements AdapterView.OnItemSelec
         FragmentNewUserBinding binding = FragmentNewUserBinding.inflate(inflater, container, false);
         MainActivity mainActivity = (MainActivity) getActivity();
 
+        assert mainActivity != null;
+        String suche = mainActivity.getResult();
+
         Spinner spinner = binding.newProfileImage;
         spinner.setOnItemSelectedListener(this);
 
@@ -50,11 +53,11 @@ public class NewUserFragment extends Fragment implements AdapterView.OnItemSelec
         TextInputLayout tl = binding.newTischeLayout;
         TextInputLayout al = binding.newAustattungLayout;
         TextInputLayout ml = binding.newMangelLayout;
+
         EditText rt = binding.newRaum;
 
-        if (mainActivity != null) {
-            rt.setText(mainActivity.getResult());
-        }
+        rt.setText(mainActivity.getResult());
+        mainActivity.setResult("");
         Objects.requireNonNull(rl.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
