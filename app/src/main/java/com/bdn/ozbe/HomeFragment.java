@@ -193,16 +193,27 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
 
         binding.listview.setOnItemLongClickListener((parent, view, position, id) -> {
+            int index = -1;
+            for (int x = 0; x < mainActivity.getUserArrayList().size(); x++) {
+                if (tuserArrayList.get(position).getRaumID().equals(mainActivity.getUser(x).getRaumID())) {
+                    index = x;
+                }
+            }
+            int finalIndex = index;
             new AlertDialog.Builder(getContext())
                     //set icon
                     .setIcon(android.R.drawable.ic_menu_delete)
                     //set title
-                    .setTitle("Möchten Sie den Raum \"" + mainActivity.getUser(position).getRaumID() + "\" wirklich löschen?")
+                    .setTitle("Möchten Sie den Raum \"" + mainActivity.getUser(index).getRaumID() + "\" wirklich löschen?")
                     //set message
                     .setMessage("Damit werden die Daten endgültig verloren gegangen.")
                     //set positive button
                     .setPositiveButton("Ja", (dialogInterface, i) -> {
-                        mainActivity.deleteUser(position);
+                        if (tuserArrayList.isEmpty())
+                        {
+                            tuserArrayList = new ArrayList<>(mainActivity.getUserArrayList());
+                        }
+                        mainActivity.deleteUser(finalIndex);
                         listAdapter.notifyDataSetChanged();
                         binding.listview.setAdapter(listAdapter);
                         mainActivity.writeDB();
