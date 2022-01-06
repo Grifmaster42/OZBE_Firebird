@@ -34,14 +34,15 @@
 
     <EditText
         android:id="@+id/searchText"
-        android:layout_width="327dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Suchbegriff eingeben"
         android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
-        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintEnd_toStartOf="@+id/filter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,9 +54,20 @@
         android:layout_marginEnd="11dp"
         android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/filter"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_qr_code_scanner_24"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <Spinner
+        android:id="@+id/filter"
+        android:layout_width="119dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="81dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/searchText"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

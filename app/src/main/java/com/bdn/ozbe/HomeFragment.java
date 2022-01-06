@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -23,22 +25,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private FragmentFirstBinding binding;
     private ListAdapter tlistAdapter;
     private ListAdapter listAdapter;
-    private final ArrayList<User> tuserArrayList = new ArrayList<>();
-
+    private ArrayList<User> tuserArrayList = new ArrayList<>();
+    private String curFilter = "Raum";
+    private final String[] filter_array = {"Raum","Stühle","Tische","Austattung","Mängel"};
+    MainActivity mainActivity;
+    private EditText search;
 
     @Override
     public View onCreateView( @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        MainActivity mainActivity = (MainActivity) getActivity();
-        assert mainActivity != null;
+        mainActivity = (MainActivity) getActivity();
         tlistAdapter = new ListAdapter(getContext(), tuserArrayList);
         listAdapter = new ListAdapter(getContext(), mainActivity.getUserArrayList());
 
@@ -80,7 +83,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        EditText search = binding.searchText;
+        search = binding.searchText;
         binding.listview.setAdapter(listAdapter);
         binding.listview.setClickable(true);
         search.setText(mainActivity.getResult());
@@ -103,37 +106,91 @@ public class HomeFragment extends Fragment {
         }
         search.setText("");
 
+        Spinner filter = binding.filter;
+        FilterAdapter filterAdapter = new FilterAdapter(getContext(), filter_array);
+        filter.setAdapter(filterAdapter);
+        filter.setOnItemSelectedListener(this);
+        filter.setSelection(0);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 tuserArrayList.clear();
+                String stext = search.getText().toString();
+                String ftext = "";
+                if (stext.equals("")) {
+                    listAdapter.notifyDataSetChanged();
+                    binding.listview.setAdapter(listAdapter);
+                } else {
                 for (int x=0;x < mainActivity.getUserArrayList().size();x++){
-                    String stext = search.getText().toString().toUpperCase();
-                    if (mainActivity.getUser(x).getRaumID().contains(stext)) {
-                        System.out.println(mainActivity.getUser(x).getRaumID());
-                        tuserArrayList.add(mainActivity.getUser(x));
-                        System.out.println(tuserArrayList.size());
+                    switch (curFilter) {
+                        case "Stühle":
+                            ftext = mainActivity.getUser(x).getStuhle();
+                            if(!stext.replaceAll("[^0-9]+", "").equals("")) {
+                                if (Integer.parseInt(ftext) >= Integer.parseInt(stext.replaceAll("[^0-9]+", ""))) {
+                                    System.out.println(mainActivity.getUser(x).getRaumID());
+                                    tuserArrayList.add(mainActivity.getUser(x));
+                                    System.out.println(tuserArrayList.size());
+                                }
+
+                            }
+                            break;
+                        case "Tische":
+                            ftext = mainActivity.getUser(x).getTische();
+                            if(!stext.replaceAll("[^0-9]+", "").equals("")) {
+                                if (Integer.parseInt(ftext) >= Integer.parseInt(stext.replaceAll("[^0-9]+", ""))) {
+                                    System.out.println(mainActivity.getUser(x).getRaumID());
+                                    tuserArrayList.add(mainActivity.getUser(x));
+                                    System.out.println(tuserArrayList.size());
+                                }
+                            }
+                            break;
+                        case "Austattung":
+                            ftext = mainActivity.getUser(x).getAustattung();
+
+                            if (ftext.toUpperCase().contains(stext.toUpperCase())) {
+                                System.out.println(mainActivity.getUser(x).getRaumID());
+                                tuserArrayList.add(mainActivity.getUser(x));
+                                System.out.println(tuserArrayList.size());
+                            }
+                            break;
+                        case "Mängel":
+                            ftext = mainActivity.getUser(x).getMangel();
+
+                            if (ftext.toUpperCase().contains(stext.toUpperCase())) {
+                                System.out.println(mainActivity.getUser(x).getRaumID());
+                                tuserArrayList.add(mainActivity.getUser(x));
+                                System.out.println(tuserArrayList.size());
+                            }
+                            break;
+                        default:
+                            ftext = mainActivity.getUser(x).getRaumID();
+
+                            if (ftext.toUpperCase().contains(stext.toUpperCase())) {
+                                System.out.println(mainActivity.getUser(x).getRaumID());
+                                tuserArrayList.add(mainActivity.getUser(x));
+                                System.out.println(tuserArrayList.size());
+                            }
+                            break;
                     }
                     listAdapter.notifyDataSetChanged();
                     binding.listview.setAdapter(tlistAdapter);
-                    if (stext.equals("")) {
-                        listAdapter.notifyDataSetChanged();
-                        binding.listview.setAdapter(listAdapter);
-                    }
+
                 }
                 mainActivity.setResult(search.getText().toString());
+                }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
             }
         });
+
+
 
         binding.listview.setOnItemLongClickListener((parent, view, position, id) -> {
             new AlertDialog.Builder(getContext())
@@ -158,16 +215,30 @@ public class HomeFragment extends Fragment {
         });
 
         binding.listview.setOnItemClickListener((parent, view, position, id) -> {
-            mainActivity.setCurrent(mainActivity.getUser(position));
+            if (tuserArrayList.isEmpty())
+            {
+                tuserArrayList = new ArrayList<>(mainActivity.getUserArrayList());
+            }
+            mainActivity.setCurrent(tuserArrayList.get(position));
             NavHostFragment.findNavController(HomeFragment.this)
                     .navigate(R.id.action_FirstFragment_to_SecondFragment);
+            mainActivity.setResult("");
+            search.setText("");
+            filter.setSelection(0);
+
+            });
+
+        binding.imageButton.setOnClickListener(view -> {
+            filter.setSelection(0);
+            NavHostFragment.findNavController(HomeFragment.this)
+                .navigate(R.id.action_FirstFragment_to_QRFragment);
         });
 
-        binding.imageButton.setOnClickListener(view -> NavHostFragment.findNavController(HomeFragment.this)
-                .navigate(R.id.action_FirstFragment_to_QRFragment));
+        binding.floatingActionButtonAdd.setOnClickListener(view -> {
+            filter.setSelection(0);
+            NavHostFragment.findNavController(HomeFragment.this).navigate(R.id.action_FirstFragment_to_NewUserFragment);
+        });
 
-        binding.floatingActionButtonAdd.setOnClickListener(view -> NavHostFragment.findNavController(HomeFragment.this)
-                .navigate(R.id.action_FirstFragment_to_NewUserFragment));
 
         return root;
 
@@ -178,4 +249,48 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        curFilter = filter_array[i];
+        tuserArrayList.clear();
+        String stext = search.getText().toString();
+        String ftext = "";
+        for (int x=0;x < mainActivity.getUserArrayList().size();x++){
+            switch (curFilter) {
+                case "Stühle":
+                    ftext = mainActivity.getUser(x).getStuhle();
+                    break;
+                case "Tische":
+                    ftext = mainActivity.getUser(x).getTische();
+                    break;
+                case "Austattung":
+                    ftext = mainActivity.getUser(x).getAustattung();
+                    break;
+                case "Mängel":
+                    ftext = mainActivity.getUser(x).getMangel();
+                    break;
+                default:
+                    ftext = mainActivity.getUser(x).getRaumID();
+                    break;
+            }
+
+            if (ftext.toUpperCase().contains(stext.toUpperCase())) {
+                System.out.println(mainActivity.getUser(x).getRaumID());
+                tuserArrayList.add(mainActivity.getUser(x));
+                System.out.println(tuserArrayList.size());
+            }
+            listAdapter.notifyDataSetChanged();
+            binding.listview.setAdapter(tlistAdapter);
+            if (stext.equals("")) {
+                listAdapter.notifyDataSetChanged();
+                binding.listview.setAdapter(listAdapter);
+            }
+        }
+        mainActivity.setResult(search.getText().toString());
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }
