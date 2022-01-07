@@ -71,25 +71,35 @@ public class UserFragment extends Fragment implements AdapterView.OnItemSelected
                 binding.textView4.setBackgroundColor(getResources().getColor(R.color.light_grey));
                 edit = true;
             } else {
-                String stuhle = binding.phoneProfile.getText().toString().replace(" ","").replace("-","");
-                String tische = binding.countryProfile.getText().toString().replace(" ","").replace("-","");
+                String stuhle = binding.phoneProfile.getText().toString().replaceAll("[^0-9]","");
+                String tische = binding.countryProfile.getText().toString().replaceAll("[^0-9]","");
+                stuhle = Integer.toString(Integer.parseInt(stuhle));
+                tische = Integer.toString(Integer.parseInt(tische));
                 if (stuhle.equals("")) {
                     stuhle = "0";
                 }
                 if (tische.equals("")){
                     tische = "0";
                 }
-                User cur = new User(binding.nameProfile.getText().toString(),
-                                    stuhle,
-                                    tische,
-                                    binding.textView3.getText().toString(),
-                                    binding.textView4.getText().toString(),
-                                    img);
-                mainActivity.editUser(cur);
-                mainActivity.writeDB();
-                mainActivity.setStartup(true);
-                NavHostFragment.findNavController(UserFragment.this)
+                // TODO Erroranzeige
+                if (stuhle.length() > 3){
+                    binding.phoneProfile.setError("Die Anzahl an Stühlen kann höchstens 999 betragen.");
+                }
+                else if (tische.length() > 3){
+                    binding.countryProfile.setError("Die Anzahl an Tischen kann höchstens 999 betragen.");
+                } else {
+                    User cur = new User(binding.nameProfile.getText().toString(),
+                            stuhle,
+                            tische,
+                            binding.textView3.getText().toString(),
+                            binding.textView4.getText().toString(),
+                            img);
+                    mainActivity.editUser(cur);
+                    mainActivity.writeDB();
+                    mainActivity.setStartup(true);
+                    NavHostFragment.findNavController(UserFragment.this)
                             .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                }
             }
         });
         return binding.getRoot();

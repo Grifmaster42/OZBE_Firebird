@@ -12,8 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="1dp"
+        android:minHeight="48dp"
         tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
 
     <RelativeLayout
@@ -87,7 +89,7 @@
                     android:hint="Stühle"
                     android:inputType="number"
                     android:textSize="26sp"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -125,7 +127,7 @@
                     android:hint="Tische"
                     android:inputType="number"
                     android:textSize="26sp"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -163,7 +165,7 @@
                     android:hint="Austattung"
                     android:inputType="text"
                     android:textSize="26sp"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -202,7 +204,7 @@
                     android:hint="Mängel"
                     android:inputType="text"
                     android:textSize="26sp"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

@@ -226,8 +226,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
         });
 
         binding.listview.setOnItemClickListener((parent, view, position, id) -> {
-            if (tuserArrayList.isEmpty())
-            {
+            if (tuserArrayList.isEmpty()) {
                 tuserArrayList = new ArrayList<>(mainActivity.getUserArrayList());
             }
             mainActivity.setCurrent(tuserArrayList.get(position));
