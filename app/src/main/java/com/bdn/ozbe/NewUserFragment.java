@@ -56,7 +56,7 @@ public class NewUserFragment extends Fragment implements AdapterView.OnItemSelec
 
         EditText rt = binding.newRaum;
 
-        rt.setText(mainActivity.getResult());
+        rt.setText(suche);
         mainActivity.setResult("");
         Objects.requireNonNull(rl.getEditText()).addTextChangedListener(new TextWatcher() {
             @Override
@@ -95,7 +95,6 @@ public class NewUserFragment extends Fragment implements AdapterView.OnItemSelec
             }
 
 
-            assert mainActivity != null;
             mainActivity.addUser(new User(rl.getEditText().getText().toString()
                     ,sl.getEditText().getText().toString()
                     ,tl.getEditText().getText().toString()

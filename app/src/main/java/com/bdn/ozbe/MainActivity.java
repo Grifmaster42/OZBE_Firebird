@@ -89,12 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void writeDB() {
         for(int i = 0; i<userArrayList.size();i++) {
-            if (getUser(i).getAustattung().equals("")) {
-                getUser(i).setAustattung(" ");
-            }
-            if (getUser(i).getMangel().equals("")) {
-                getUser(i).setMangel(" ");
-            }
             int t = i+1;
             myRef.child(Integer.toString(t)).setValue(getUser(i));
             Log.d("DEBUG","Anzahl: "+userArrayList.size());

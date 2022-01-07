@@ -124,6 +124,7 @@
                 android:background="@android:color/transparent"
                 android:minHeight="46dp"
                 android:text="15"
+                android:inputType="number"
                 android:textSize="26sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -174,6 +175,7 @@
                 android:background="@android:color/transparent"
                 android:minHeight="48dp"
                 android:text="30"
+                android:inputType="number"
                 android:textSize="26sp" />
 
         </LinearLayout>

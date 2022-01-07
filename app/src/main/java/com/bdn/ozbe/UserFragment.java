@@ -71,9 +71,17 @@ public class UserFragment extends Fragment implements AdapterView.OnItemSelected
                 binding.textView4.setBackgroundColor(getResources().getColor(R.color.light_grey));
                 edit = true;
             } else {
+                String stuhle = binding.phoneProfile.getText().toString().replace(" ","").replace("-","");
+                String tische = binding.countryProfile.getText().toString().replace(" ","").replace("-","");
+                if (stuhle.equals("")) {
+                    stuhle = "0";
+                }
+                if (tische.equals("")){
+                    tische = "0";
+                }
                 User cur = new User(binding.nameProfile.getText().toString(),
-                                    binding.phoneProfile.getText().toString(),
-                                    binding.countryProfile.getText().toString(),
+                                    stuhle,
+                                    tische,
                                     binding.textView3.getText().toString(),
                                     binding.textView4.getText().toString(),
                                     img);
